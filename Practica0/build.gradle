@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+ 
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jettyEclipse'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+task addNote(type: JavaExec, dependsOn: classes) {
+	if ('addPerson' in gradle.startParameter.taskNames &&
+	    gradle.startParameter.logLevel < LogLevel.QUIET) {
+        println "Note: The task 'addPerson' works best in quiet mode (gradle -q addPerson)"
+    }
+    group 			= 'Formats JSON'
+    description 	= 'Add a note to an notes book'
+    main 			= 'formats.json.GestionNote'
+	classpath 		= sourceSets.main.runtimeClasspath
+	standardInput	= System.in
+} 
+
+task listNotes(type: JavaExec) {
+    group 			= 'Formats JSON'
+    description 	= 'List the contents of an notes book'
+    main 			= 'formats.json.ListNotes'
+	classpath 		= sourceSets.main.runtimeClasspath
+}
+
+repositories {
+   mavenCentral()                                               
+}
+
+dependencies {
+   providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+   compile 'com.google.code.gson:gson:2.3'
+}

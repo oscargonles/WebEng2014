@@ -118,4 +118,20 @@ public class ListNotes {
 		}
 		return resultado;
 	}
+	
+	// Main function: Reads the entire address book from a file and prints all
+		// the information inside.
+		public static void main(String[] args) throws Exception {
+			Gson gson = new Gson();
+			String filename = DEFAULT_FILE_NAME;
+			if (args.length > 0) {
+				filename = args[0];
+			}
+
+			// Read the existing address book.
+			NoteBook notesBook = gson.fromJson(new FileReader(filename),
+					NoteBook.class);
+
+			Print(notesBook);
+		}
 }
