@@ -1,10 +1,10 @@
-package bigws.hellows;
+package bigws.Servidor;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService
-public class HelloWebService {
+public class SoapWebService {
 	
 	
 	@WebMethod()

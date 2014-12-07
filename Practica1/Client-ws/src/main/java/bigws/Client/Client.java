@@ -17,8 +17,8 @@ public class Client extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
-		HelloWebServiceService hwss = new HelloWebServiceService();
-		HelloWebService hws = hwss.getHelloWebServicePort();
+		SoapWebServiceService hwss = new SoapWebServiceService();
+		SoapWebService hws = hwss.getSoapWebServicePort();
 		String option=request.getParameter("menu");
 		try{
 		String task = request.getParameter("task");
