@@ -17,7 +17,20 @@
 </xs:complexType>
 <xs:complexType name="listaNotasFilterResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:noteBook" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="noteBook">
+<xs:sequence>
+<xs:element name="listNotes" type="tns:note" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="note">
+<xs:sequence>
+<xs:element name="context" type="xs:string" minOccurs="0"/>
+<xs:element name="priority" type="xs:int"/>
+<xs:element name="project" type="xs:string" minOccurs="0"/>
+<xs:element name="task" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="deleteNote">
@@ -34,20 +47,12 @@
 </xs:complexType>
 <xs:complexType name="listaNotasResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:noteBook" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="addNote">
 <xs:sequence>
 <xs:element name="arg0" type="tns:note" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="note">
-<xs:sequence>
-<xs:element name="context" type="xs:string" minOccurs="0"/>
-<xs:element name="priority" type="xs:int"/>
-<xs:element name="project" type="xs:string" minOccurs="0"/>
-<xs:element name="task" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="addNoteResponse">

@@ -4,7 +4,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService
-public class HelloWebService {
+public class WebServices {
 	
 	
 	@WebMethod()
@@ -14,7 +14,7 @@ public class HelloWebService {
 		
 	}
 	@WebMethod()
-	public String listaNotas()  {
+	public NoteBook listaNotas()  {
 		ListNotes list=new ListNotes();
 		return list.listaNotas();
 	}
@@ -24,7 +24,7 @@ public class HelloWebService {
 		gestionNote.deleteNote(tipo,campo);
 	}
 	@WebMethod()
-	public String listaNotasFilter(String option, String campo){
+	public NoteBook listaNotasFilter(String option, String campo){
 		ListNotes list=new ListNotes();
 		return list.listaNotasFilter(option, campo);
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NoteBook {
 	
-	public List<Note> listNotes = new ArrayList<Note>();
+	private List<Note> listNotes = new ArrayList<Note>();
 
 	public NoteBook(){}
 	

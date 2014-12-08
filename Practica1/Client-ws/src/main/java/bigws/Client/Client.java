@@ -51,7 +51,8 @@ public class Client extends HttpServlet {
 				campo=request.getParameter("campo");
 				if(boton.equals("Lista completa")) hws.showAll();
 				else if(boton.equals("Aceptar Filter")) {
-					String todasNotas=hws.listaNotasFilter(option,campo);
+					NoteBook noteBookFilter=hws.listaNotasFilter(option,campo);
+					String todasNotas=PrintFilter(noteBookFilter,option,campo);
 					resp.setContentType("text/html");
 					RequestDispatcher dispatch = request.getRequestDispatcher("listNotes.jsp");
 					request.setAttribute("listNotes", todasNotas);
@@ -59,7 +60,8 @@ public class Client extends HttpServlet {
 				}
 			}
 		}
-			String todasNotas=hws.listaNotas();
+			NoteBook listNotes=hws.listaNotas();
+			String todasNotas=Print(listNotes);
 			resp.setContentType("text/html");
 			RequestDispatcher dispatch = request.getRequestDispatcher("listNotes.jsp");
 			request.setAttribute("listNotes", todasNotas);
@@ -71,6 +73,76 @@ public class Client extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		doGet(req, resp);
+	}
+	
+	public String Print(NoteBook noteBook) {
+		String resultado="";
+		int numNotas=1;
+		for (Note note : noteBook.getListNotes()) {
+			String listaNotas="";
+			listaNotas=listaNotas+"<b>NOTA "+numNotas+"</b><br>";
+			listaNotas=listaNotas +"Task: "+note.getTask()+"<br>";
+			listaNotas=listaNotas +"Context: "+note.getContext()+"<br>";
+			listaNotas=listaNotas +"Project: "+ note.getProject()+"<br>";
+			listaNotas=listaNotas +"Prioridad: "+note.getPriority()+"<br>";
+			listaNotas=listaNotas+"<br>";
+			numNotas++;
+			resultado+="<fieldset><FONT face=Comic Sans MS,arial,verdana size=4 color=blue>"+listaNotas+"</FONT></fieldset>";
+		}
+		return resultado;
+	}
+	
+	public String PrintFilter(NoteBook noteBook, String option,String campo){
+		String resultado="";
+		int numNotas=1;
+		for (Note note : noteBook.getListNotes()) {
+			switch(option){
+				case "Task":
+					if(note.getTask().equals(campo)){
+						String listaNotas="";
+						listaNotas=listaNotas+"<b>NOTA "+numNotas+"</b><br>";
+						listaNotas=listaNotas +"Task: "+note.getTask()+"<br>";
+						listaNotas=listaNotas +"Context: "+note.getContext()+"<br>";
+						listaNotas=listaNotas +"Project: "+ note.getProject()+"<br>";
+						listaNotas=listaNotas +"Prioridad: "+note.getPriority()+"<br>";
+						listaNotas=listaNotas+"<br>";
+						numNotas++;
+						resultado+="<fieldset><FONT face=Comic Sans MS,arial,verdana size=4 color=blue>"+listaNotas+"</FONT></fieldset>";
+					}
+					break;
+				case "Project":
+					if(note.getProject().equals(campo)){
+						String listaNotas="";
+						listaNotas=listaNotas+"<b>NOTA "+numNotas+"</b><br>";
+						listaNotas=listaNotas +"Task: "+note.getTask()+"<br>";
+						listaNotas=listaNotas +"Context: "+note.getContext()+"<br>";
+						listaNotas=listaNotas +"Project: "+ note.getProject()+"<br>";
+						listaNotas=listaNotas +"Prioridad: "+note.getPriority()+"<br>";
+						listaNotas=listaNotas+"<br>";
+						numNotas++;
+						resultado+="<fieldset><FONT face=Comic Sans MS,arial,verdana size=4 color=blue>"+listaNotas+"</FONT></fieldset>";
+					}
+					break;
+					
+				case "Context":
+					if(note.getContext().equals(campo)){
+						String listaNotas="";
+						listaNotas=listaNotas+"<b>NOTA "+numNotas+"</b><br>";
+						listaNotas=listaNotas +"Task: "+note.getTask()+"<br>";
+						listaNotas=listaNotas +"Context: "+note.getContext()+"<br>";
+						listaNotas=listaNotas +"Project: "+ note.getProject()+"<br>";
+						listaNotas=listaNotas +"Prioridad: "+note.getPriority()+"<br>";
+						listaNotas=listaNotas+"<br>";
+						numNotas++;
+						resultado+="<fieldset><FONT face=Comic Sans MS,arial,verdana size=4 color=blue>"+listaNotas+"</FONT></fieldset>";
+					}
+					break;
+			}
+			
+			
+			
+		}
+		return resultado;
 	}
 }
 

@@ -14,7 +14,7 @@ public class SoapWebService {
 		
 	}
 	@WebMethod()
-	public String listaNotas()  {
+	public NoteBook listaNotas()  {
 		ListNotes list=new ListNotes();
 		return list.listaNotas();
 	}
@@ -24,7 +24,7 @@ public class SoapWebService {
 		gestionNote.deleteNote(tipo,campo);
 	}
 	@WebMethod()
-	public String listaNotasFilter(String option, String campo){
+	public NoteBook listaNotasFilter(String option, String campo){
 		ListNotes list=new ListNotes();
 		return list.listaNotasFilter(option, campo);
 	}
